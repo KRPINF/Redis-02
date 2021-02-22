@@ -5,8 +5,8 @@ from flask import Flask,request,jsonify
 
 app = Flask(__name__)
 db= redis.StrictRedis(
-        host='node9158-advweb-20.app.ruk-com.cloud',
-        port=11150,
+        host='10.100.2.135',
+        port=6379,
         password='QLXmve62151',
         decode_responses=True
         )
@@ -54,5 +54,4 @@ def Show_Del(Key):
     return "Delete Success"
 
 if __name__ == '__main__':
-    app.run()
-#    app.run(host='0.0.0.0', port=81)
+    app.run(host='0.0.0.0', port=80)
