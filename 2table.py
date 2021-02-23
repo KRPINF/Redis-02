@@ -85,7 +85,7 @@ def update_staff(id):
 # Delete Staff
 @app.route('/staff/<id>', methods=['DELETE'])
 def delete_staff(id):
-    staff = KPOPsquery.get(id)
+    staff = KPOPs.query.get(id)
     db.session.delete(staff)
     db.session.commit()
     
