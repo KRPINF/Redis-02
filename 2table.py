@@ -15,7 +15,7 @@ db = SQLAlchemy(app)
 ma = Marshmallow(app)
 
 #Staff Class/Model
-class Staffs(db.Model):
+class KPOPs(db.Model):
     id = db.Column(db.String(20), primary_key=True, unique=True)
     name = db.Column(db.String(50))
     type = db.Column(db.String(25))
@@ -37,9 +37,9 @@ staff_schema = StaffSchema()
 staffs_schema = StaffSchema(many=True)
 
 # Get All Staffs
-@app.route('/staffs', methods=['GET'])
+@app.route('/KPOPs', methods=['GET'])
 def get_staffs():
-    all_staffs = Staffs.query.all()
+    all_staffs = SKPOPs.query.all()
     result = staffs_schema.dump(all_staffs)
     return jsonify(result)
 
@@ -47,7 +47,7 @@ def get_staffs():
 # Get Single Staff
 @app.route('/staff/<id>', methods=['GET'])
 def get_staff(id):
-    staff = Staffs.query.get(id)
+    staff = KPOPs.query.get(id)
     return staff_schema.jsonify(staff)
 
 # Create a Staff
@@ -58,7 +58,7 @@ def add_staff():
     type = request.json['type']
     company = request.json['company']
 
-    new_staff = Staffs(id, name, type, company)
+    new_staff = KPOPs(id, name, type, company)
 
     db.session.add(new_staff)
     db.session.commit()
@@ -68,7 +68,7 @@ def add_staff():
 # Update a Staff
 @app.route('/staff/<id>', methods=['PUT'])
 def update_staff(id):
-    staff = Staffs.query.get(id)
+    staff = KPOPs.query.get(id)
     
     name = request.json['name']
     email = request.json['email']
@@ -85,7 +85,7 @@ def update_staff(id):
 # Delete Staff
 @app.route('/staff/<id>', methods=['DELETE'])
 def delete_staff(id):
-    staff = Staffs.query.get(id)
+    staff = KPOPsquery.get(id)
     db.session.delete(staff)
     db.session.commit()
     
