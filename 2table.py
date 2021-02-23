@@ -16,21 +16,21 @@ ma = Marshmallow(app)
 
 #Staff Class/Model
 class Staffs(db.Model):
-    id = db.Column(db.String(13), primary_key=True, unique=True)
+    id = db.Column(db.String(20), primary_key=True, unique=True)
     name = db.Column(db.String(50))
-    email = db.Column(db.String(25))
-    phone = db.Column(db.String(10))
+    type = db.Column(db.String(25))
+    company = db.Column(db.String(20))
     
-    def __init__(self, id, name, email, phone):
+    def __init__(self, id, name, type, company):
         self.id = id
         self.name = name
-        self.email = email
-        self.phone = phone
+        self.type = type
+        self.company = company
 
 # Staff Schema
 class StaffSchema(ma.Schema):
     class Meta:
-        fields =('id', 'name', 'email', 'phone')
+        fields =('id', 'name', 'type', 'company')
 
 # Init Schema 
 staff_schema = StaffSchema()
@@ -55,10 +55,10 @@ def get_staff(id):
 def add_staff():
     id = request.json['id']
     name = request.json['name']
-    email = request.json['email']
-    phone = request.json['phone']
+    type = request.json['type']
+    company = request.json['company']
 
-    new_staff = Staffs(id, name, email, phone)
+    new_staff = Staffs(id, name, type, company)
 
     db.session.add(new_staff)
     db.session.commit()
@@ -94,7 +94,7 @@ def delete_staff(id):
 # Web Root Hello
 @app.route('/', methods=['GET'])
 def get():
-    return jsonify({'ms': 'Hello Cloud DB1'})
+    return jsonify({'ms': 'Hello Cloud DB2'})
 
 # Run Server
 if __name__ == "__main__":
